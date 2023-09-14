@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-import { textSync } from 'figlet';
+import figlet from 'figlet';
 import { Command, OptionValues } from 'commander';
 import { init } from './handlers';
 
@@ -13,7 +13,7 @@ const getHandler = (options: OptionValues) => {
 }
 
 const cli = () => {
-    console.log(textSync('MILE'))
+    console.log(figlet.textSync('MILE'))
 
     const program = new Command();
 
