@@ -2,11 +2,12 @@
 
 import figlet from 'figlet';
 import { Command, OptionValues } from 'commander';
-import { init } from './handlers';
+import { build, init } from './handlers';
 
 const getHandler = (options: OptionValues) => {
     const handlers: Record<string, () => void> = {
-        'init': () => init()
+        'init': () => init(),
+        'build': () => build()
     };
 
     Object.keys(options).forEach(option => handlers[option as string]());
@@ -21,6 +22,7 @@ const cli = () => {
         .version('0.0.1')
         .description('The simplest and fastest way to bundle your TypeScript libraries')
         .option('-i, --init', 'Initialize project with default config')
+        .option('-b, --build', 'Build project based on milefu.config.js')
         .parse(process.argv);
 
     getHandler(program.opts<{ init: string }>());

@@ -1,11 +1,21 @@
+export const SOURCE_DIRECTORY_NAME = 'src';
+export const TYPESCRIPT_CONFIG_FILE = 'tsconfig.json';
+export const MILEFU_CONFIG_FILE = 'milefu.config.js';
+export const PACKAGE_JSON_CONFIG_FILE = 'package.json';
+
 export const MESSAGES = {
-    APPLICATION_NAME_QUESTION: `What is the name of your application?`,
-    PACKAGE_MANAGER_QUESTION: `Which package manager would you 💙 to use?`,
-    PACKAGE_MANAGER_ERROR: 'Package manager selected is not installed',
-    PACKAGE_MANAGER_NPM: 'npm',
-    PACKAGE_MANAGER_YARN: 'yarn',
-    PACKAGE_MANAGER_PNPM: 'pnpm',
-    RUNNER_EXECUTION_ERROR: (command: string) => `\nFailed to execute command: ${command}`,
+  APPLICATION_NAME_QUESTION: `What is the name of your application?`,
+  PACKAGE_MANAGER_QUESTION: `Which package manager would you 💙 to use?`,
+  PACKAGE_MANAGER_ERROR: 'Package manager selected is not installed',
+  PACKAGE_MANAGER_NPM: 'npm',
+  PACKAGE_MANAGER_YARN: 'yarn',
+  PACKAGE_MANAGER_PNPM: 'pnpm',
+  PROJECT_CREATION_STATUS: (name: string) => `Creating project ${name}`,
+  PROJECT_CREATION_SUCCESS: (name: string) => `Project ${name} created. Files: ${MILEFU_CONFIG_FILE}, ${TYPESCRIPT_CONFIG_FILE}, ${PACKAGE_JSON_CONFIG_FILE} added or changed`,
+  PROJECT_BUILD_STATUS: `Building project with options included in ${MILEFU_CONFIG_FILE}`,
+  PROJECT_BUILD_ERROR: (error: string) => `Cannot build project. ${error}`,
+  PROJECT_BUILD_SUCCESS: 'Project built successfully',
+  RUNNER_EXECUTION_ERROR: (command: string) => `\nFailed to execute command: ${command}`,
 }
 
 export const TYPESCRIPT_CONFIG_TEMPLATE = `
@@ -14,7 +24,7 @@ export const TYPESCRIPT_CONFIG_TEMPLATE = `
     "compilerOptions": {
         "target": "ES6" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
         "declaration": true /* Generates corresponding '.d.ts' file. */,
-        "outDir": "dist" /* Redirect output structure to the directory. */,
+        "outDir": "lib" /* Redirect output structure to the directory. */,
         
         /* Strict Type-Checking Options */
         "strict": true /* Enable all strict type-checking options. */,
@@ -44,4 +54,22 @@ export const TYPESCRIPT_CONFIG_TEMPLATE = `
         "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
     }
   }
+`;
+
+export const MILEFU_CONFIG_TEMPLATE = `module.exports = {
+  format: ['esm', 'cjs'],
+  output: 'lib',
+  input: 'src/index.ts',
+  sourcemap: true,
+  typescript: true,
+  mimify: true
+}
+`
+
+export const INDEX_FILE_TEMPLATE = `
+const app = () => {
+  console.log('Hello World');
+}
+
+app();
 `
