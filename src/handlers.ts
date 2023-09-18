@@ -3,7 +3,6 @@ import inquirer from 'inquirer';
 import path from 'path';
 import { RollupBuild, rollup } from 'rollup';
 
-
 import { buildBundleConfig, buildPreBundleConfig, generateOutputs } from './build';
 import { INDEX_FILE_TEMPLATE, MESSAGES, MILEFU_CONFIG_FILE, MILEFU_CONFIG_TEMPLATE, SOURCE_DIRECTORY_NAME, TYPESCRIPT_CONFIG_FILE, TYPESCRIPT_CONFIG_TEMPLATE } from './constants';
 import { editPackageJson } from './json';
